@@ -77,6 +77,7 @@ class App extends React.Component{
       return
     }
 
+    window.scrollTo(0,0)
     if(this.state.firstSubmit){
       this.setState({firstNear:true})
       this.setState({firstSubmit: false})
@@ -94,8 +95,8 @@ class App extends React.Component{
       this.setState({formData: cleanForm})
       const freshStyle = {
         position: 'absolute', 
-        top: 500, 
-        left: 700,
+        top: 2600, 
+        left: 400,
         width:100, 
         height: 100, 
         backgroundColor:'#ff000000',
@@ -106,6 +107,25 @@ class App extends React.Component{
       this.setState({submitStyle: freshStyle})
     }
     else{
+      alert("You are about to submit your resume")
+      let booll = window.confirm("Are you sure you want to submit your resume?")
+      if(booll){
+        booll = window.confirm("I mean it's pretty bad")
+        if(booll){
+          alert("Okay, your funeral")
+          alert("here")
+          alert("we")
+          alert("go")
+        }
+        else{
+          alert("Good, not worth the dispointment")
+          return
+        }
+      }
+      else{
+        alert("Good, I though you'd better wait anyway")
+        return
+      }
       console.log('Submission Sucessful: Deploying Rick Astley')
       window.open('https://youtu.be/dQw4w9WgXcQ')
     }
