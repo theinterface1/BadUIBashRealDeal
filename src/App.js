@@ -38,9 +38,9 @@ class App extends React.Component{
   render(){ 
     return(
       <ResumeForm
-      onChange={this.handleFormChange}
-      onSubmit={this.handleFormSubmit}
-      formData={this.state.formData}
+        onChange={this.handleFormChange}
+        onSubmit={this.handleFormSubmit}
+        formData={this.state.formData} 
       />
     );
   }
