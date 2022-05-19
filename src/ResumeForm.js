@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Form, Button } from "react-bootstrap";
 import randomColor from "randomcolor"
+import Popup from './Popup';
 
 class ResumeForm extends React.Component{
     constructor(props) {
@@ -68,7 +69,7 @@ class ResumeForm extends React.Component{
     };
 
     render(){ 
-      let {onChange, onSubmit, formData} = this.props
+      let {onChange, onSubmit, formData, submitStyle, onFocusChange} = this.props
 
         return(
           <div className="App">
@@ -78,59 +79,62 @@ class ResumeForm extends React.Component{
               </h1>
               <br/>
             </header>
-            <body>
+            <div>
               <Form onSubmit={onSubmit}>
                 <Form.Group>
                   <Form.Label>First Name: </Form.Label>
-                  <Form.Control type='text' placeholder='First Name' name='firstName' style={{ color: this.state.color }} onKeyDown={this.KeyPress} value={formData.firstName} onChange={onChange}></Form.Control>
+                  <Form.Control type='text' placeholder='First Name' name='firstName' style={{ color: this.state.color }} onKeyDown={this.KeyPress} value={formData.firstName} onChange={onChange} onFocus={onFocusChange}></Form.Control>
                 </Form.Group>
                 <br/>
                 <Form.Group>
                   <Form.Label>Last Name: </Form.Label>
-                  <Form.Control type='text' placeholder='Last Name' name='lastName' style={{ color: this.state.color }} onKeyDown={this.KeyPress} value={formData.lastName} onChange={onChange}></Form.Control>
+                  <Form.Control type='text' placeholder='Last Name' name='lastName' style={{ color: this.state.color }} onKeyDown={this.KeyPress} value={formData.lastName} onChange={onChange} onFocus={onFocusChange}></Form.Control>
                 </Form.Group>
                 <br/>
                 <Form.Group>
                   <Form.Label>Date of Birth: </Form.Label>
-                  <Form.Control name='dob' style={{ color: this.state.color }} value={this.state.month} onChange={onChange} placeholder='MM' readOnly></Form.Control>
+                  <Form.Control name='dob' style={{ color: this.state.color }} value={this.state.month} onChange={onChange} onFocus={onFocusChange} placeholder='MM' readOnly></Form.Control>
                   <Button type="button" onClick={() => { this.incMonth(); this.KeyPress(); }}>+1</Button>
                   <Form.Label>/</Form.Label>
-                  <Form.Control name='dob' style={{ color: this.state.color }} value={this.state.day} onChange={onChange} placeholder='DD' readOnly></Form.Control>
+                  <Form.Control name='dob' style={{ color: this.state.color }} value={this.state.day} onChange={onChange} onFocus={onFocusChange} placeholder='DD' readOnly></Form.Control>
                   <Button type="button" onClick={() => { this.incDay(); this.KeyPress(); }}>+1</Button>
                   <Form.Label>/</Form.Label>
-                  <Form.Control name='dob' style={{ color: this.state.color }} value={this.state.year} onChange={onChange} placeholder='YYYY' readOnly></Form.Control>
+                  <Form.Control name='dob' style={{ color: this.state.color }} value={this.state.year} onChange={onChange} onFocus={onFocusChange} placeholder='YYYY' readOnly></Form.Control>
                   <Button type="button" onClick={() => { this.incYear(); this.KeyPress(); }}>+1</Button>
                 </Form.Group>
                 <br/>
                 <Form.Group>
                   <Form.Label>Email: </Form.Label>
-                  <Form.Control type='text' placeholder='someone@email.com' name='email' style={{ color: this.state.color }} onKeyDown={this.KeyPress} value={formData.email} onChange={onChange}></Form.Control>
+                  <Form.Control type='text' placeholder='someone@email.com' name='email' style={{ color: this.state.color }} onKeyDown={this.KeyPress} value={formData.email} onChange={onChange} onFocus={onFocusChange}></Form.Control>
                 </Form.Group>
                 <br/>
                 <Form.Group>
                   <Form.Label>Phone Number: </Form.Label>
-                  <Form.Control type='text' placeholder='123-456-7890' name='tel' style={{ color: this.state.color }} value={this.state.num} onChange={onChange}></Form.Control>
+                  <Form.Control type='text' placeholder='123-456-7890' name='tel' style={{ color: this.state.color }} value={this.state.num} onChange={onChange} onFocus={onFocusChange}></Form.Control>
                   <Button type="button" onClick={() => { this.incNum(); this.KeyPress(); }}>+1</Button>
                 </Form.Group>
                 <br/>
                 <Form.Group>
                   <Form.Label>Address: </Form.Label>
-                  <Form.Control type='password' placeholder='1 Street RD' name='address' style={{ color: this.state.color }} onKeyDown={this.KeyPress} value={formData.address} onChange={onChange}></Form.Control>
+                  <Form.Control type='password' placeholder='1 Street RD' name='address' style={{ color: this.state.color }} onKeyDown={this.KeyPress} value={formData.address} onChange={onChange} onFocus={onFocusChange}></Form.Control>
                 </Form.Group>
                 <br/>
                 <Form.Group>
                   <Form.Label>Why should we consider you for this position: </Form.Label>
                   <br/>
-                  <Form.Control as='textarea' size='lg' name='post' style={{ color: this.state.color }} onKeyDown={this.KeyPress} value={formData.post} onChange={onChange}></Form.Control>
+                    
+                  <Form.Control as='textarea' size='lg' name='post' style={{ color: this.state.color }} onKeyDown={this.KeyPress} value={formData.post} onChange={onChange} onFocus={onFocusChange}></Form.Control>
                 </Form.Group>
 
                 <input ref="fileInput" onChange={this.handleFileUpload} type="file" style={{ display: "none" }} />
                 <Button type='button' onClick={() => this.refs.fileInput.click()}>Upload Resume File</Button>
                 <br/>
 
-                <Button variant='primary' type='submit'>Submit</Button>
+                <div id='boundBox' style={submitStyle}>
+                  <Button variant='primary' type='submit'>Submit</Button>
+                </div>
               </Form>
-            </body>
+            </div>
           </div>
         );
       }
